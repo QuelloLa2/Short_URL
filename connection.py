@@ -4,14 +4,14 @@ import os
 
 load_dotenv()
 
-database = sql.connect(  # Connessione al database
+database = sql.connect(
     host=os.getenv("DB_HOST"),
     user=os.getenv("DB_USER"),
     password=os.getenv("DB_PASSWORD"),
     database=os.getenv("DB_NAME")
 )
 
-cursor = database.cursor() #Creo il puntatore per il database, con uso solo per la LETTURA 
+cursor = database.cursor()
 
 def commit():
     database.commit()
