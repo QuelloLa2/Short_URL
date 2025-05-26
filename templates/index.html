@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Input con Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1 class="title">Short ULR </h1>
+    <form method="POST">
+        <input type="text" name="testo" placeholder="Scrivi qui...">
+        <button type="submit">Invia</button>
+    </form>
+    {% if short_url %}
+    <p><strong>Url: </strong><a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+    {% elif errore %}
+    <p><strong>Errore:</strong> {{ errore }}</p>
+    {% endif %}
+</body>
+
+</html>
