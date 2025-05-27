@@ -10,7 +10,8 @@ def create_redirect_table():
     cursor.execute(f''' CREATE TABLE IF NOT EXISTS {table} (
         url VARCHAR(255) NOT NULL UNIQUE,
         hex_url VARCHAR(255) NOT NULL UNIQUE,
-        click INT NOT NULL 
+        click INT NOT NULL,
+        username VARCHAR(512) NOT NULL
     )
     ''')
 
@@ -27,7 +28,7 @@ def create_url(long_url):
 
     url = control("url", long_url)
 
-    if url is not None: # contrllo url inserito
+    if url is not None: 
         return url
 
     create_hex_url = os.urandom(3).hex()
