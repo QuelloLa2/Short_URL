@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request, session
+from flask import Flask, redirect, render_template, request
 import short_url as short
 import login_database
 
@@ -21,12 +21,18 @@ def index():
 
 @app.route(f'/<hex_url>')
 def redirect_url(hex_url):
-    url = short.get_things(hex_url, "hex_url", "url")
-    short.click(hex_url)
-    if url is None:
-        return "URL non trovato", 404
-    print(url[0])
-    return redirect(url[0]) 
+
+    if len(hex_url) == 6 :
+        url = short.get_things(hex_url, "hex_url", "url")
+        short.click(hex_url)
+        if url is None:
+            return "URL non trovato", 404
+        print(url[0])
+        return redirect(url[0])
+    
+    if hex_url == "favicon.ico":
+        return "favicon url", 400
+    
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
